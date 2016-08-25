@@ -1,0 +1,52 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Hello World API"
+paths:
+  /hello:
+    get:
+      description: "Returns a greeting to the user!"
+      operationId: "helloGET"
+      parameters:
+      - name: "user"
+        in: "query"
+        description: "The name of the user to greet."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Returns the greeting."
+          schema:
+            $ref: "#/definitions/successModel"
+        400:
+          description: "Invalid characters in \"user\" were provided."
+      x-swagger-router-controller: "Default"
+  /hello/{user}:
+    get:
+      description: "Returns a greeting to the user!"
+      operationId: "helloUserGET"
+      parameters:
+      - name: "user"
+        in: "path"
+        description: "The name of the user to greet."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Returns the greeting."
+          schema:
+            $ref: "#/definitions/successModel"
+        400:
+          description: "Invalid characters in \"user\" were provided."
+      x-swagger-router-controller: "Default"
+definitions:
+  successModel:
+    type: "object"
+    properties:
+      success:
+        type: "boolean"
+      message:
+        type: "string"
+      host:
+        type: "string"
